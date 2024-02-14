@@ -12,22 +12,23 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     console.log(path);
     const ytParam = ctx.query.ytParam;
 
-    // Redirect if YouTube, Pinterest, or Twitter is the referer or request contains the specified parameters
-    if (
-        referringURL?.includes('youtube.com') ||
-        referringURL?.includes('pinterest.com') ||
-        referringURL?.includes('t.co') ||  // t.co is Twitter's URL shortener domain
-        ytParam
-    ) {
-        return {
-            redirect: {
-                permanent: false,
-                destination: `${
-                    `https://www.profitablegatecpm.com/pupzrj4ys?key=53cc60f9e7c17c60ead1040c784d8272`
-                }`,
-            },
-        };
-    }
+    // Redirect if Facebook, TikTok, or the specified parameters are present
+if (
+    referringURL?.includes('facebook.com') ||
+    referringURL?.includes('tiktok.com') ||
+    fbParam ||  // Assuming fbParam is a variable representing a specific parameter for Facebook
+    tiktokParam  // Assuming tiktokParam is a variable representing a specific parameter for TikTok
+) {
+    return {
+        redirect: {
+            permanent: false,
+            destination: `${
+                `https://www.profitablegatecpm.com/pupzrj4ys?key=53cc60f9e7c17c60ead1040c784d8272`
+            }`,
+        },
+    };
+}
+
 
     const query = gql`
         {
